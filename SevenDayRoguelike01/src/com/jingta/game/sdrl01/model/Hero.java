@@ -23,6 +23,8 @@ public class Hero {
 	Vector2 acceleration = new Vector2();
 	Vector2 velocity = new Vector2();
 	
+	Vector2 destination;
+	
 	Rectangle bounds = new Rectangle();
 	State state = State.IDLE;
 	float stateTime = 0f;
@@ -33,6 +35,13 @@ public class Hero {
 	}
 	public void setFacingLeft(boolean facingLeft){
 		this.facingLeft = facingLeft;
+	}
+	
+	public Vector2 getDestination() {
+		return this.destination;
+	}
+	public void setDestination(Vector2 destination) {
+		this.destination = destination;
 	}
 	
 	public Vector2 getAcceleration(){
