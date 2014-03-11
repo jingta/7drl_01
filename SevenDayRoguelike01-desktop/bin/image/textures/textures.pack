@@ -1,0 +1,597 @@
+
+textures.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+DawnLike/Characters/Aquatic0
+  rotate: false
+  xy: 392, 358
+  size: 128, 80
+  orig: 128, 80
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Aquatic1
+  rotate: false
+  xy: 522, 536
+  size: 128, 80
+  orig: 128, 80
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Avian0
+  rotate: false
+  xy: 132, 38
+  size: 128, 112
+  orig: 128, 112
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Avian1
+  rotate: false
+  xy: 392, 440
+  size: 128, 112
+  orig: 128, 112
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Cat0
+  rotate: false
+  xy: 652, 698
+  size: 128, 80
+  orig: 128, 80
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Cat1
+  rotate: false
+  xy: 782, 828
+  size: 128, 80
+  orig: 128, 80
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Demon0
+  rotate: false
+  xy: 262, 458
+  size: 128, 144
+  orig: 128, 144
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Demon1
+  rotate: false
+  xy: 392, 700
+  size: 128, 144
+  orig: 128, 144
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Dog0
+  rotate: false
+  xy: 522, 618
+  size: 128, 112
+  orig: 128, 112
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Dog1
+  rotate: false
+  xy: 652, 780
+  size: 128, 112
+  orig: 128, 112
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Elemental0
+  rotate: false
+  xy: 392, 846
+  size: 128, 176
+  orig: 128, 176
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Elemental1
+  rotate: false
+  xy: 132, 152
+  size: 128, 176
+  orig: 128, 176
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Humanoid0
+  rotate: false
+  xy: 2, 622
+  size: 128, 400
+  orig: 128, 400
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Humanoid1
+  rotate: false
+  xy: 2, 220
+  size: 128, 400
+  orig: 128, 400
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Misc0
+  rotate: false
+  xy: 782, 910
+  size: 128, 112
+  orig: 128, 112
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Misc1
+  rotate: false
+  xy: 262, 68
+  size: 128, 112
+  orig: 128, 112
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Pest0
+  rotate: false
+  xy: 652, 894
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Pest1
+  rotate: false
+  xy: 262, 182
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Plant0
+  rotate: false
+  xy: 522, 878
+  size: 128, 144
+  orig: 128, 144
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Plant1
+  rotate: false
+  xy: 262, 312
+  size: 128, 144
+  orig: 128, 144
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Player0
+  rotate: false
+  xy: 262, 798
+  size: 128, 224
+  orig: 128, 224
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Player1
+  rotate: false
+  xy: 132, 330
+  size: 128, 224
+  orig: 128, 224
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Quadraped0
+  rotate: false
+  xy: 2, 26
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Quadraped1
+  rotate: false
+  xy: 262, 604
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Reptile0
+  rotate: false
+  xy: 132, 790
+  size: 128, 232
+  orig: 128, 232
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Reptile1
+  rotate: false
+  xy: 132, 556
+  size: 128, 232
+  orig: 128, 232
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Rodent0
+  rotate: false
+  xy: 262, 2
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Rodent1
+  rotate: false
+  xy: 652, 632
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Slime0
+  rotate: false
+  xy: 392, 276
+  size: 128, 80
+  orig: 128, 80
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Slime1
+  rotate: false
+  xy: 522, 454
+  size: 128, 80
+  orig: 128, 80
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Undead0
+  rotate: false
+  xy: 392, 554
+  size: 128, 144
+  orig: 128, 144
+  offset: 0, 0
+  index: -1
+DawnLike/Characters/Undead1
+  rotate: false
+  xy: 522, 732
+  size: 128, 144
+  orig: 128, 144
+  offset: 0, 0
+  index: -1
+
+textures2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+DawnLike/Examples/Logo
+  rotate: false
+  xy: 2, 2
+  size: 480, 384
+  orig: 480, 384
+  offset: 0, 0
+  index: -1
+
+textures3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+DawnLike/GUI/GUI0
+  rotate: false
+  xy: 2, 2
+  size: 256, 288
+  orig: 256, 288
+  offset: 0, 0
+  index: -1
+DawnLike/GUI/GUI1
+  rotate: false
+  xy: 260, 2
+  size: 256, 288
+  orig: 256, 288
+  offset: 0, 0
+  index: -1
+
+textures4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+DawnLike/Objects/Decor0
+  rotate: false
+  xy: 424, 84
+  size: 128, 304
+  orig: 128, 304
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Door0
+  rotate: false
+  xy: 2, 2
+  size: 128, 80
+  orig: 128, 80
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Door1
+  rotate: false
+  xy: 132, 2
+  size: 128, 80
+  orig: 128, 80
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Floor
+  rotate: false
+  xy: 522, 390
+  size: 336, 624
+  orig: 336, 624
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Ground0
+  rotate: false
+  xy: 294, 84
+  size: 128, 112
+  orig: 128, 112
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Ground1
+  rotate: false
+  xy: 324, 418
+  size: 128, 112
+  orig: 128, 112
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Hill0
+  rotate: false
+  xy: 554, 100
+  size: 256, 288
+  orig: 256, 288
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Map0
+  rotate: false
+  xy: 324, 774
+  size: 192, 240
+  orig: 192, 240
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Map1
+  rotate: false
+  xy: 324, 532
+  size: 192, 240
+  orig: 192, 240
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Ore0
+  rotate: false
+  xy: 2, 84
+  size: 144, 112
+  orig: 144, 112
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Ore1
+  rotate: false
+  xy: 148, 84
+  size: 144, 112
+  orig: 144, 112
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Pit0
+  rotate: false
+  xy: 860, 502
+  size: 128, 512
+  orig: 128, 512
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Tile
+  rotate: false
+  xy: 392, 18
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Trap
+  rotate: false
+  xy: 262, 2
+  size: 128, 80
+  orig: 128, 80
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Tree0
+  rotate: false
+  xy: 860, 68
+  size: 128, 432
+  orig: 128, 432
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Wall
+  rotate: false
+  xy: 2, 198
+  size: 320, 816
+  orig: 320, 816
+  offset: 0, 0
+  index: -1
+
+textures5.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+DawnLike/Objects/Decor1
+  rotate: false
+  xy: 262, 354
+  size: 128, 304
+  orig: 128, 304
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Effect0
+  rotate: false
+  xy: 132, 532
+  size: 128, 416
+  orig: 128, 416
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Effect1
+  rotate: false
+  xy: 132, 114
+  size: 128, 416
+  orig: 128, 416
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Hill1
+  rotate: false
+  xy: 262, 660
+  size: 256, 288
+  orig: 256, 288
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Pit1
+  rotate: false
+  xy: 2, 436
+  size: 128, 512
+  orig: 128, 512
+  offset: 0, 0
+  index: -1
+DawnLike/Objects/Tree1
+  rotate: false
+  xy: 2, 2
+  size: 128, 432
+  orig: 128, 432
+  offset: 0, 0
+  index: -1
+
+textures6.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+DawnLike/Items/Ammo
+  rotate: false
+  xy: 132, 148
+  size: 128, 96
+  orig: 128, 96
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Amulet
+  rotate: false
+  xy: 522, 456
+  size: 128, 48
+  orig: 128, 48
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Armor
+  rotate: false
+  xy: 2, 360
+  size: 128, 144
+  orig: 128, 144
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Book
+  rotate: false
+  xy: 2, 214
+  size: 128, 144
+  orig: 128, 144
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Boot
+  rotate: false
+  xy: 522, 422
+  size: 128, 32
+  orig: 128, 32
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Chest0
+  rotate: false
+  xy: 262, 146
+  size: 128, 48
+  orig: 128, 48
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Chest1
+  rotate: false
+  xy: 132, 16
+  size: 128, 48
+  orig: 128, 48
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Food
+  rotate: false
+  xy: 132, 360
+  size: 128, 144
+  orig: 128, 144
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Glove
+  rotate: false
+  xy: 392, 274
+  size: 128, 16
+  orig: 128, 16
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Hat
+  rotate: false
+  xy: 392, 342
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Key
+  rotate: false
+  xy: 522, 404
+  size: 128, 16
+  orig: 128, 16
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Light
+  rotate: false
+  xy: 652, 454
+  size: 128, 16
+  orig: 128, 16
+  offset: 0, 0
+  index: -1
+DawnLike/Items/LongWep
+  rotate: false
+  xy: 132, 246
+  size: 128, 112
+  orig: 128, 112
+  offset: 0, 0
+  index: -1
+DawnLike/Items/MedWep
+  rotate: false
+  xy: 652, 472
+  size: 128, 32
+  orig: 128, 32
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Money
+  rotate: false
+  xy: 2, 84
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Music
+  rotate: false
+  xy: 262, 294
+  size: 128, 96
+  orig: 128, 96
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Potion
+  rotate: false
+  xy: 2, 2
+  size: 128, 80
+  orig: 128, 80
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Ring
+  rotate: false
+  xy: 392, 408
+  size: 128, 96
+  orig: 128, 96
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Rock
+  rotate: false
+  xy: 262, 112
+  size: 128, 32
+  orig: 128, 32
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Scroll
+  rotate: false
+  xy: 262, 196
+  size: 128, 96
+  orig: 128, 96
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Shield
+  rotate: false
+  xy: 782, 488
+  size: 128, 16
+  orig: 128, 16
+  offset: 0, 0
+  index: -1
+DawnLike/Items/ShortWep
+  rotate: false
+  xy: 132, 66
+  size: 128, 80
+  orig: 128, 80
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Tool
+  rotate: false
+  xy: 392, 292
+  size: 128, 48
+  orig: 128, 48
+  offset: 0, 0
+  index: -1
+DawnLike/Items/Wand
+  rotate: false
+  xy: 262, 392
+  size: 128, 112
+  orig: 128, 112
+  offset: 0, 0
+  index: -1
