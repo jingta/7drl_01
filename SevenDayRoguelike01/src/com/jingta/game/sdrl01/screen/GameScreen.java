@@ -41,7 +41,7 @@ public class GameScreen implements Screen, InputProcessor {
 	@Override
 	public void show() {
 		world = new World();
-		renderer = new WorldRenderer(world, false);
+		renderer = new WorldRenderer(world, true);//false);
 		controller = new WorldController(world);
 		Gdx.input.setInputProcessor(this);
 	}
@@ -87,8 +87,8 @@ public class GameScreen implements Screen, InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
-		return false;
+		controller.moveHeroTo(renderer.toGameCoordinates(screenX,screenY));
+		return true; //input handled!
 	}
 
 	@Override

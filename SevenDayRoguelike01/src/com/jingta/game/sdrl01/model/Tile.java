@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Vector2;
  *
  */
 public class Tile {
-public static final float SIZE = 1f;
+public static final float SIZE = 1.0f;
 	
 	Vector2 position = new Vector2();
 	Rectangle bounds = new Rectangle();
