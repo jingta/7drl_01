@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.badlogic.gdx.math.Vector2;
 import com.jingta.game.sdrl01.model.Hero;
+import com.jingta.game.sdrl01.model.Tile;
 import com.jingta.game.sdrl01.model.World;
 
 
@@ -34,6 +35,9 @@ public class WorldController {
 	
 	// input events
 	public void moveHeroTo(Vector2 position){
-		hero.setPosition(position);
+		Tile t = world.getLevel().getTile((int)position.x, (int)position.y);
+		if(t == null || !t.getType().equals(Tile.Type.COLLIDABLE)) {
+			hero.setPosition(position);
+		}
 	}
 }

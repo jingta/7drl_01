@@ -12,9 +12,15 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Tile {
 public static final float SIZE = 1.0f;
+	public enum Type {COLLIDABLE, INTERACTABLE, ATTACKABLE, COLLECTIBLE, DECORATIVE}
 	
 	Vector2 position = new Vector2();
 	Rectangle bounds = new Rectangle();
+	Type type;
+	
+	public Type getType() {
+		return this.type;
+	}
 	
 	public Rectangle getBounds() {
 		return bounds;
@@ -24,7 +30,8 @@ public static final float SIZE = 1.0f;
 		return position;
 	}
 	
-	public Tile(Vector2 position) {
+	public Tile(Vector2 position, Type type) {
+		this.type = type;
 		this.position = position;
 		this.bounds.setX(position.x);
         this.bounds.setY(position.y);
