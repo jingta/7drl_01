@@ -105,10 +105,10 @@ public class WorldRenderer {
 
 		}
 		spriteBatch.draw(
-				heroFrame, hero.getPosition().x * ppux,
+				heroFrame, hero.getPosition().x * ppux + ppux*.10f,
 				hero.getPosition().y * ppuy, 
-				Hero.SIZE * ppux,
-				Hero.SIZE * ppuy);
+				Hero.SIZE * ppux *0.8f,
+				Hero.SIZE * ppuy );
 	}
 
 	private void drawDebug() {

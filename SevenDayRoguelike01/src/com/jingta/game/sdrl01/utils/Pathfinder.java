@@ -49,7 +49,7 @@ public class Pathfinder {
 	List<Node> openNodes;
 	List<Node> closedNodes;
 
-	Pathfinder(Level level) {
+	public Pathfinder(Level level) {
 		this.level = level;
 	}
 	
