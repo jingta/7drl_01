@@ -24,7 +24,12 @@ public class Level {
 		return tiles;
 	}
 	public Tile getTile(int x, int y) {
-		return tiles[x][y];
+		if (x >= 0 && x < tiles.length) { 
+			if (y >= 0 && y < tiles[x].length) {
+				return tiles[x][y];
+			}
+		}
+		return null;
 	}
 	public Level() {
 		loadDemoLevel();
