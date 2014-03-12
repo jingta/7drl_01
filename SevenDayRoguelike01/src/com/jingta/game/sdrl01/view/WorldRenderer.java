@@ -155,7 +155,7 @@ public class WorldRenderer {
 		heroIdleRight = new TextureRegion(heroIdleLeft);
 		heroIdleRight.flip(true, false);
 		blockTexture = new TextureRegion(
-				atlas.findRegion("DawnLike/Objects/Tile"), 0, 0, 16, 16);
+				atlas.findRegion("DawnLike/Objects/Tile"), 6*16, 2*16, 16, 16);
 		TextureRegion[] walkLeftFrames = new TextureRegion[2];
 		TextureRegion[] walkRightFrames = new TextureRegion[2];
 
