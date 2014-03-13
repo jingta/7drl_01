@@ -13,6 +13,7 @@ import com.jingta.game.sdrl01.model.Tile.Type;
 public class Level {
 	private int width, height;
 	private Tile[][] tiles;
+	private Vector2 startPoint;
 	
 	public int getHeight() {
 		return height;
@@ -32,13 +33,36 @@ public class Level {
 		return null;
 	}
 	public Level() {
-		loadDemoLevel();
+		loadDemo2Level();
 	}
 	
-	private void loadDemoLevel() {
-		width = 10;
-		height = 7;
-		tiles = new Tile[width][height];
+	private void loadDemo2Level() {
+		this.width = 20;
+		this.height = 14;
+		
+		this.startPoint = new Vector2(10,7);
+		
+		this.tiles = new Tile[width][height];
+		Tile tile = null;
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				if (x == 0 || y == 0 || x == width || y == height) {
+					// walls on edges
+					tile = new Tile(new Vector2(x, y), Type.COLLIDABLE);
+				} else {
+					tile = new Tile(new Vector2(x, y), Type.DECORATIVE);
+				}
+				tiles[x][y] = tile;
+			}
+		}
+		
+	}
+	private void loadDemo1Level() {
+		this.width = 10;
+		this.height = 7;
+		this.startPoint = new Vector2(7,2);
+		
+		this.tiles = new Tile[width][height];
 		for (int col = 0; col < width; col++) {
 			for (int row = 0; row < height; row++) {
 				tiles[col][row] = null;
@@ -60,5 +84,8 @@ public class Level {
 		tiles[6][3] = new Tile(new Vector2(6, 3), Type.COLLIDABLE);
 		tiles[6][4] = new Tile(new Vector2(6, 4), Type.COLLIDABLE);
 		tiles[6][5] = new Tile(new Vector2(6, 5), Type.COLLIDABLE);
+	}
+	public Vector2 getStartPoint() {
+		return this.startPoint;
 	}
 }

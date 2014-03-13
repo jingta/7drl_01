@@ -35,7 +35,8 @@ public class WorldRenderer {
 	// private Texture blockTexture;
 	// private Texture heroTexture;
 
-	private TextureRegion blockTexture;
+	private TextureRegion wallTexture;
+	private TextureRegion floorTexture;
 
 	private int width;
 	private int height;
@@ -78,8 +79,34 @@ public class WorldRenderer {
 		}
 		//when cut in 1/10, everything is only drawn in 1/10th
 		//when doubled, only see 5 tiles
+		TextureRegion tileTexture;
 		for (Tile tile : world.getDrawableTiles((int) CAMERA_WIDTH, (int) CAMERA_HEIGHT)) {
-			spriteBatch.draw(blockTexture,
+			if (tile.getType().equals(Tile.Type.COLLIDABLE)) {
+				tileTexture = wallTexture;
+				if (tile.getPosition().x == 0 && tile.getPosition().y == 0) {
+					tileTexture = new TextureRegion(
+							wallTexture, 
+							-1*16, 
+							1*16, 16, 16);	
+				} else if (tile.getPosition().x == 0) {
+					tileTexture = new TextureRegion(
+							wallTexture, 
+							-1*16, 
+							0, 16, 16);
+				} else if (tile.getPosition().y == 13 || tile.getPosition().y == 0){
+					tileTexture = new TextureRegion(
+							wallTexture, 
+							0, 
+							-1*16, 16, 16);
+				}
+			} else {
+				tileTexture = //floorTexture;
+						new TextureRegion(
+						floorTexture, 
+						0, 
+						-3*16, 16, 16);
+			}
+			spriteBatch.draw(tileTexture,
 					tile.getPosition().x * this.ppux,
 					tile.getPosition().y * this.ppuy,
 					Tile.SIZE * this.ppux, 
@@ -154,8 +181,14 @@ public class WorldRenderer {
 				atlas.findRegion("DawnLike/Characters/Player0"), 16, 48, 16, 16);
 		heroIdleRight = new TextureRegion(heroIdleLeft);
 		heroIdleRight.flip(true, false);
-		blockTexture = new TextureRegion(
-				atlas.findRegion("DawnLike/Objects/Tile"), 6*16, 2*16, 16, 16);
+		wallTexture = new TextureRegion(
+				atlas.findRegion("DawnLike/Objects/Wall"), 
+				(1+(0*7))*16, //tileid + setId*7 
+				(1+(2*3))*16, 16, 16); // tileID + setId*3
+		floorTexture = new TextureRegion(
+				atlas.findRegion("DawnLike/Objects/Floor"), 
+				(1+(0*7))*16, 
+				(1+(3*3))*16, 16, 16);
 		TextureRegion[] walkLeftFrames = new TextureRegion[2];
 		TextureRegion[] walkRightFrames = new TextureRegion[2];
 

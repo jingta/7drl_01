@@ -52,7 +52,7 @@ public class World {
 	}
 	
 	public void createDemoWorld(){
-		this.hero = new Hero(new Vector2(7,2));
-		this.level = new Level();				
+		this.level = new Level();
+		this.hero = new Hero(level.getStartPoint());
 	}
 }
