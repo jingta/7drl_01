@@ -89,28 +89,14 @@ public class WorldRenderer {
 		if (resized) {
 		Gdx.app.log("JING", "=======Drawing Blocks========");
 		}
-		//when cut in 1/10, everything is only drawn in 1/10th
-		//when doubled, only see 5 tiles
 		TextureRegion tileTexture;
-		//for (Tile tile : world.getDrawableTiles((int) CAMERA_WIDTH, (int) CAMERA_HEIGHT)) {
-		Vector3 topRight = new Vector3(Gdx.graphics.getWidth(),  Gdx.graphics.getHeight(), 0);
-		this.cam.unproject(topRight);
-		//Gdx.app.log("JING", "w:" + (this.cam.position.x + v3.x)  +", h:" + (this.cam.position.y + v3.y));
 		
+		//TODO: better way to do this?
 		Vector3 bottomLeft = new Vector3(0,0, 0);
+		Vector3 topRight = new Vector3(Gdx.graphics.getWidth(),  Gdx.graphics.getHeight(), 0);
+		this.cam.unproject(topRight);	
 		this.cam.unproject(bottomLeft);
-		Gdx.app.log("JING", "tr:" + (topRight.x)  +", " + (topRight.y) + 
-				" bl: " + bottomLeft.x+ ", " + bottomLeft.y);
-		//16.0, -9.56565625 //bottom left -1
-		//33.0, -9.56565625 // bottom right -1
-		//33.0, 1.434343767 // top right -1
-		//16.0, 1.434343767  // top left -1
-		//480x320
-		
-		
-		
-		for (Tile tile : world.getDrawableTilesV2(
-				bottomLeft, topRight)) {
+		for (Tile tile : world.getDrawableTiles(bottomLeft, topRight)) {
 			if (tile.getType().equals(Tile.Type.COLLIDABLE)) {
 				tileTexture = wallTexture;
 				if (tile.getPosition().x == 0 && tile.getPosition().y == 0) {
@@ -136,13 +122,6 @@ public class WorldRenderer {
 						0, 
 						-3*16, 16, 16);
 			}
-			/*
-			spriteBatch.draw(tileTexture,
-					tile.getPosition().x * this.ppux,
-					tile.getPosition().y * this.ppuy,
-					Tile.SIZE * this.ppux, 
-					Tile.SIZE * this.ppuy);
-					*/
 			spriteBatch.draw(tileTexture,
 					tile.getPosition().x,
 					tile.getPosition().y,
@@ -168,13 +147,6 @@ public class WorldRenderer {
 		} else if (hero.getState().equals(Hero.State.JUMPING)) {
 
 		}
-		/*
-		spriteBatch.draw(
-				heroFrame, hero.getPosition().x * ppux + ppux*.10f,
-				hero.getPosition().y * ppuy, 
-				Hero.SIZE * ppux *0.8f,
-				Hero.SIZE * ppuy );
-				*/
 		spriteBatch.draw(
 				heroFrame, hero.getPosition().x,
 				hero.getPosition().y, 
@@ -186,9 +158,12 @@ public class WorldRenderer {
 		// render blocks
 		debugRenderer.setProjectionMatrix(cam.combined);
 		debugRenderer.begin(ShapeType.Line);
-		for (Tile tile : world.getDrawableTiles(
-				(int) CAMERA_WIDTH, 
-				(int) CAMERA_HEIGHT)) {
+		//TODO: better way to do this?
+		Vector3 bottomLeft = new Vector3(0,0, 0);
+		Vector3 topRight = new Vector3(Gdx.graphics.getWidth(),  Gdx.graphics.getHeight(), 0);
+		this.cam.unproject(topRight);	
+		this.cam.unproject(bottomLeft);
+		for (Tile tile : world.getDrawableTiles(bottomLeft, topRight)) {
 			Rectangle r = tile.getBounds();
 			debugRenderer.setColor(new Color(1, 0, 0, 1));
 			debugRenderer.rect(r.x, r.y, r.width, r.height);

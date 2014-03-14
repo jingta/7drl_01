@@ -25,7 +25,7 @@ public class World {
 		return level;
 	}
 	
-	public List<Tile> getDrawableTilesV2(Vector3 bottomLeft, Vector3 topRight) {
+	public List<Tile> getDrawableTiles(Vector3 bottomLeft, Vector3 topRight) {
 		int x = (int) Math.floor(bottomLeft.x);
 		int y = (int) Math.floor(topRight.y);
 		if (x < 0) x = 0;
@@ -48,28 +48,6 @@ public class World {
 		return tiles;
 	}
 	
-	public List<Tile> getDrawableTiles(int width, int height) {
-		int x = (int)hero.getPosition().x - width;
-		int y = (int)hero.getPosition().y - height;
-		if (x < 0) x = 0;
-		if (y < 0) y = 0;
-		int x2 = x + 2*width;
-		int y2 = y + 2*height;
-		if (x2 > level.getWidth()) x2 = level.getWidth() - 1;
-		if (y2 > level.getHeight()) y2 = level.getHeight() - 1;
-		
-		List<Tile> tiles = new ArrayList<Tile>();
-		Tile tile;
-		
-		for (int col = x; col <= x2; col++){
-			for (int row = y; row <= y2; row++) {
-				tile = level.getTile(col, row);
-				if (tile != null) tiles.add(tile);
-			}
-		}
-		
-		return tiles;
-	}
 	
 	public World() {
 		createDemoWorld();
