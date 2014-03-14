@@ -63,7 +63,7 @@ public class Pathfinder {
 		
 		Node current = null;
 		while (!closedNodes.contains(destinationNode) && openNodes.size() > 0  ) {
-			current = openNodes.remove(0);
+			current = openNodes.remove(0); //TODO: get optimal node here
 			closedNodes.add(current);
 			//TODO: BLOCK NODES IF VALUES ARE > MAX OR < 0...will be solved if you remove blanks
 			Node up = new Node(
