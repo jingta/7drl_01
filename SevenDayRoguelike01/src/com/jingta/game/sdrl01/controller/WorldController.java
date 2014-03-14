@@ -37,7 +37,8 @@ public class WorldController {
 		if (this.hero.getDestination() != null && lastPathfound > 0.08f) {
 			lastPathfound = 0;
 			// HERO A* PATHFIND
-			this.hero.setPosition(pathfindMove(this.hero));
+			Vector2 newPos = pathfindMove(this.hero);
+			if (newPos != null) this.hero.setPosition(newPos);
 			if (this.hero.getDestination().equals(this.hero.getPosition())) {
 				this.hero.setDestination(null);
 			} 
@@ -51,6 +52,7 @@ public class WorldController {
 		Vector2 p = unit.getPosition();
 		Pathfinder pathfinder = new Pathfinder(world.getLevel());
 		Node result = pathfinder.getPath(p, d);
+		if (result == null) return null;
 		while (result.getParent() != null && 
 				result.getParent().getParent() != null) {
 			result = result.getParent();

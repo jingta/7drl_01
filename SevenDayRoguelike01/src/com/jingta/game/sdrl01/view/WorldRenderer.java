@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.jingta.game.sdrl01.model.Hero;
 import com.jingta.game.sdrl01.model.Tile;
 import com.jingta.game.sdrl01.model.World;
@@ -56,6 +57,7 @@ public class WorldRenderer {
 		this.world = world;
 		this.cam = new OrthographicCamera(CAMERA_WIDTH, CAMERA_HEIGHT);
 		this.cam.position.set(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, 0);
+		this.cam.zoom = 3;
 		this.cam.update();
 		this.debug = debug;
 		this.spriteBatch = new SpriteBatch();
@@ -63,6 +65,16 @@ public class WorldRenderer {
 	}
 
 	public void render() {
+		//this.cam.position.x = (world.getHero().getPosition().x *16);
+		//this.cam.position.y = (world.getHero().getPosition().y *16);
+		//Vector3 heroPos = new Vector3(this.world.getHero().getPosition(), 0);
+		//this.cam.unproject(heroPos);
+		this.cam.position.x = world.getHero().getPosition().x;
+		this.cam.position.y = world.getHero().getPosition().y;
+
+		//Gdx.app.log("JING", "cam: " + world.getHero().getPosition().x + ", " + world.getHero().getPosition().y);
+		cam.update();
+		spriteBatch.setProjectionMatrix(cam.combined); //NEW
 		spriteBatch.begin();
 		drawTiles();
 		drawHero();
@@ -80,7 +92,25 @@ public class WorldRenderer {
 		//when cut in 1/10, everything is only drawn in 1/10th
 		//when doubled, only see 5 tiles
 		TextureRegion tileTexture;
-		for (Tile tile : world.getDrawableTiles((int) CAMERA_WIDTH, (int) CAMERA_HEIGHT)) {
+		//for (Tile tile : world.getDrawableTiles((int) CAMERA_WIDTH, (int) CAMERA_HEIGHT)) {
+		Vector3 topRight = new Vector3(Gdx.graphics.getWidth(),  Gdx.graphics.getHeight(), 0);
+		this.cam.unproject(topRight);
+		//Gdx.app.log("JING", "w:" + (this.cam.position.x + v3.x)  +", h:" + (this.cam.position.y + v3.y));
+		
+		Vector3 bottomLeft = new Vector3(0,0, 0);
+		this.cam.unproject(bottomLeft);
+		Gdx.app.log("JING", "tr:" + (topRight.x)  +", " + (topRight.y) + 
+				" bl: " + bottomLeft.x+ ", " + bottomLeft.y);
+		//16.0, -9.56565625 //bottom left -1
+		//33.0, -9.56565625 // bottom right -1
+		//33.0, 1.434343767 // top right -1
+		//16.0, 1.434343767  // top left -1
+		//480x320
+		
+		
+		
+		for (Tile tile : world.getDrawableTilesV2(
+				bottomLeft, topRight)) {
 			if (tile.getType().equals(Tile.Type.COLLIDABLE)) {
 				tileTexture = wallTexture;
 				if (tile.getPosition().x == 0 && tile.getPosition().y == 0) {
@@ -106,11 +136,18 @@ public class WorldRenderer {
 						0, 
 						-3*16, 16, 16);
 			}
+			/*
 			spriteBatch.draw(tileTexture,
 					tile.getPosition().x * this.ppux,
 					tile.getPosition().y * this.ppuy,
 					Tile.SIZE * this.ppux, 
 					Tile.SIZE * this.ppuy);
+					*/
+			spriteBatch.draw(tileTexture,
+					tile.getPosition().x,
+					tile.getPosition().y,
+					Tile.SIZE, 
+					Tile.SIZE);
 			if (resized) {
 			Gdx.app.log("JING", "draw " + tile.getPosition().x * ppux + ", " +
 					+ tile.getPosition().y * ppuy + ", " + 
@@ -131,18 +168,26 @@ public class WorldRenderer {
 		} else if (hero.getState().equals(Hero.State.JUMPING)) {
 
 		}
+		/*
 		spriteBatch.draw(
 				heroFrame, hero.getPosition().x * ppux + ppux*.10f,
 				hero.getPosition().y * ppuy, 
 				Hero.SIZE * ppux *0.8f,
 				Hero.SIZE * ppuy );
+				*/
+		spriteBatch.draw(
+				heroFrame, hero.getPosition().x,
+				hero.getPosition().y, 
+				Hero.SIZE,
+				Hero.SIZE);
 	}
 
 	private void drawDebug() {
 		// render blocks
 		debugRenderer.setProjectionMatrix(cam.combined);
 		debugRenderer.begin(ShapeType.Line);
-		for (Tile tile : world.getDrawableTiles((int) CAMERA_WIDTH, 
+		for (Tile tile : world.getDrawableTiles(
+				(int) CAMERA_WIDTH, 
 				(int) CAMERA_HEIGHT)) {
 			Rectangle r = tile.getBounds();
 			debugRenderer.setColor(new Color(1, 0, 0, 1));
@@ -207,7 +252,11 @@ public class WorldRenderer {
 	public Vector2 toGameCoordinates(int x, int y) {
 		//y = 0 -> 320 at bottom
 		Gdx.app.log("JING", "x: " + x/ppuy + " y:" + (CAMERA_HEIGHT - y/ppuy));
-		return new Vector2((float)Math.floor(x / ppux), (float)Math.floor(CAMERA_HEIGHT - y/ppuy));
+		//return new Vector2((float)Math.floor(x / ppux), (float)Math.floor(CAMERA_HEIGHT - y/ppuy));
+		Vector3 v3 = new Vector3(x,  y, 0);
+		this.cam.unproject(v3);
+		Gdx.app.log("JING", "x: " + v3.x + " y:" + v3.y);
+		return new Vector2((float)Math.floor(v3.x), (float)Math.floor(v3.y));
 	}
 
 }

@@ -46,7 +46,7 @@ public class Level {
 		Tile tile = null;
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				if (x == 0 || y == 0 || x == width || y == height) {
+				if (x == 0 || y == 0 || x == width-1 || y == height-1) {
 					// walls on edges
 					tile = new Tile(new Vector2(x, y), Type.COLLIDABLE);
 				} else {
@@ -57,6 +57,7 @@ public class Level {
 		}
 		
 	}
+	@SuppressWarnings("unused")
 	private void loadDemo1Level() {
 		this.width = 10;
 		this.height = 7;
