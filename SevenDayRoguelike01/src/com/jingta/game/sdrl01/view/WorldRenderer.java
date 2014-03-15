@@ -39,10 +39,9 @@ public class WorldRenderer {
 	private TextureRegion wallTexture;
 	private TextureRegion floorTexture;
 
-	private int width;
-	private int height;
-	private float ppux; // pixels per unit, x axis
-	private float ppuy; // pixels per unit, y axis
+	// TODO: make used?
+	//private int width;
+	//private int height;
 
 	private boolean debug = false;
 	ShapeRenderer debugRenderer = new ShapeRenderer(); // debugging?
@@ -65,14 +64,9 @@ public class WorldRenderer {
 	}
 
 	public void render() {
-		//this.cam.position.x = (world.getHero().getPosition().x *16);
-		//this.cam.position.y = (world.getHero().getPosition().y *16);
-		//Vector3 heroPos = new Vector3(this.world.getHero().getPosition(), 0);
-		//this.cam.unproject(heroPos);
 		this.cam.position.x = world.getHero().getPosition().x;
 		this.cam.position.y = world.getHero().getPosition().y;
 
-		//Gdx.app.log("JING", "cam: " + world.getHero().getPosition().x + ", " + world.getHero().getPosition().y);
 		cam.update();
 		spriteBatch.setProjectionMatrix(cam.combined); //NEW
 		spriteBatch.begin();
@@ -84,11 +78,8 @@ public class WorldRenderer {
 		}
 	}
 
-	private boolean resized = false;
 	private void drawTiles() {
-		if (resized) {
-		Gdx.app.log("JING", "=======Drawing Blocks========");
-		}
+		//Gdx.app.log("JING", "=======Drawing Blocks========");
 		TextureRegion tileTexture;
 		
 		//TODO: better way to do this?
@@ -99,42 +90,120 @@ public class WorldRenderer {
 		for (Tile tile : world.getDrawableTiles(bottomLeft, topRight)) {
 			if (tile.getType().equals(Tile.Type.COLLIDABLE)) {
 				tileTexture = wallTexture;
-				if (tile.getPosition().x == 0 && tile.getPosition().y == 0) {
-					tileTexture = new TextureRegion(
-							wallTexture, 
-							-1*16, 
-							1*16, 16, 16);	
-				} else if (tile.getPosition().x == 0) {
-					tileTexture = new TextureRegion(
-							wallTexture, 
-							-1*16, 
-							0, 16, 16);
-				} else if (tile.getPosition().y == 13 || tile.getPosition().y == 0){
-					tileTexture = new TextureRegion(
-							wallTexture, 
-							0, 
-							-1*16, 16, 16);
-				}
+				tileTexture = computeWallTexture(tile, wallTexture);
 			} else {
-				tileTexture = //floorTexture;
-						new TextureRegion(
-						floorTexture, 
-						0, 
-						-3*16, 16, 16);
+				tileTexture = new TextureRegion(floorTexture, 0, -3*16, 16, 16);
 			}
 			spriteBatch.draw(tileTexture,
 					tile.getPosition().x,
 					tile.getPosition().y,
-					Tile.SIZE, 
-					Tile.SIZE);
-			if (resized) {
-			Gdx.app.log("JING", "draw " + tile.getPosition().x * ppux + ", " +
-					+ tile.getPosition().y * ppuy + ", " + 
-					Tile.SIZE * ppux + ", " +
-					Tile.SIZE * ppuy);
-			}
+					Tile.SIZE, Tile.SIZE);
 		}
-		resized = false;
+	}
+
+	private TextureRegion computeWallTexture(Tile tile, TextureRegion wallTexture) {
+		Tile up = this.world.getLevel().getTile((int)tile.getPosition().x, (int)tile.getPosition().y+1);
+		if (up == null) up = new Tile(new Vector2(tile.getPosition().x, tile.getPosition().y+1), Tile.Type.DECORATIVE);
+		Tile down = this.world.getLevel().getTile((int)tile.getPosition().x, (int)tile.getPosition().y-1);
+		if (down == null) down = new Tile(new Vector2(tile.getPosition().x, tile.getPosition().y-1), Tile.Type.DECORATIVE);
+		Tile left = this.world.getLevel().getTile((int)tile.getPosition().x-1, (int)tile.getPosition().y);
+		if (left == null) left = new Tile(new Vector2(tile.getPosition().x-1, tile.getPosition().y), Tile.Type.DECORATIVE);
+		Tile right = this.world.getLevel().getTile((int)tile.getPosition().x+1, (int)tile.getPosition().y);
+		if (right == null) right = new Tile(new Vector2(tile.getPosition().x+1, tile.getPosition().y), Tile.Type.DECORATIVE);
+		
+		if (up.getType().equals(Tile.Type.COLLIDABLE) &&
+				down.getType().equals(Tile.Type.COLLIDABLE) &&
+				left.getType().equals(Tile.Type.COLLIDABLE) &&
+				right.getType().equals(Tile.Type.COLLIDABLE)) {
+			// if top bottom left right are walls: 4,1
+			return new TextureRegion(
+					wallTexture, 
+					3*16, 
+					0*16, 16, 16);
+		} else if (left.getType().equals(Tile.Type.COLLIDABLE) &&
+				right.getType().equals(Tile.Type.COLLIDABLE) &&
+				down.getType().equals(Tile.Type.COLLIDABLE)) {
+			// if left, right, and bottom are walls 4, 0
+			return new TextureRegion(
+					wallTexture, 
+					3*16, 
+					-1*16, 16, 16);
+		} else if (up.getType().equals(Tile.Type.COLLIDABLE) &&
+				down.getType().equals(Tile.Type.COLLIDABLE) &&
+				right.getType().equals(Tile.Type.COLLIDABLE)) {
+			//top bottom right 3,1
+			return new TextureRegion(
+					wallTexture, 
+					2*16, 
+					0*16, 16, 16);
+		} else if (up.getType().equals(Tile.Type.COLLIDABLE) &&
+				down.getType().equals(Tile.Type.COLLIDABLE) &&
+				left.getType().equals(Tile.Type.COLLIDABLE)) {
+			// top bottom left 5,1
+			return new TextureRegion(
+					wallTexture, 
+					4*16, 
+					0*16, 16, 16);
+		} else if (up.getType().equals(Tile.Type.COLLIDABLE) &&
+				left.getType().equals(Tile.Type.COLLIDABLE) &&
+				right.getType().equals(Tile.Type.COLLIDABLE)) {
+			// top, left, right 4,2
+			return new TextureRegion(
+					wallTexture, 
+					3*16, 
+					1*16, 16, 16);
+		} else if (right.getType().equals(Tile.Type.COLLIDABLE) &&
+				down.getType().equals(Tile.Type.COLLIDABLE)) {
+			// if right and bottom are walls  0, 0 -top left tile 
+			return new TextureRegion(
+					wallTexture, 
+					-1*16, 
+					-1*16, 16, 16);
+		} else if (left.getType().equals(Tile.Type.COLLIDABLE) &&
+				right.getType().equals(Tile.Type.COLLIDABLE)) {
+			// if left and right are walls 1, 0 -top middle tile
+			return new TextureRegion(
+					wallTexture, 
+					0*16, 
+					-1*16, 16, 16);
+		} else if (left.getType().equals(Tile.Type.COLLIDABLE) &&
+				down.getType().equals(Tile.Type.COLLIDABLE)) {
+			// if left and bottom are walls 2, 0
+			return new TextureRegion(
+					wallTexture, 
+					1*16, 
+					-1*16, 16, 16);
+		} else if (up.getType().equals(Tile.Type.COLLIDABLE) &&
+				down.getType().equals(Tile.Type.COLLIDABLE)) {
+			// if top and bottom are walls 0, 1
+			return new TextureRegion(
+					wallTexture, 
+					-1*16, 
+					0*16, 16, 16);
+		} else if (up.getType().equals(Tile.Type.COLLIDABLE) &&
+				right.getType().equals(Tile.Type.COLLIDABLE)) {
+			// if top and right are walls 0, 2
+			return new TextureRegion(
+					wallTexture, 
+					-1*16, 
+					1*16, 16, 16);
+		} else if (up.getType().equals(Tile.Type.COLLIDABLE) &&
+				left.getType().equals(Tile.Type.COLLIDABLE)) {
+			// if top and left are walls 2, 2
+			return new TextureRegion(
+					wallTexture, 
+					1*16, 
+					1*16, 16, 16);
+		} else if (down.getType().equals(Tile.Type.COLLIDABLE)) {
+			// if down is wall 1,1 and flip y axis
+			return new TextureRegion(
+					wallTexture, 
+					-1*16, 
+					0*16, 16, 16);
+		} else {
+			// if no neighboring walls 1, 1
+			return wallTexture;
+		}
 	}
 
 	private void drawHero() {
@@ -177,16 +246,8 @@ public class WorldRenderer {
 	}
 
 	public void setSize(int width, int height) {
-		this.width = width;
-		this.height = height;
-		this.ppux = ((float) this.width) / CAMERA_WIDTH;
-		this.ppuy = ((float) this.height) / CAMERA_HEIGHT;
-		Gdx.app.log("JING", "=======Setting Size========");
-		Gdx.app.log("JING", "width: " + width);
-		Gdx.app.log("JING", "height: " + height);
-		Gdx.app.log("JING", "ppux: " + ppux);
-		Gdx.app.log("JING", "ppuy: " + ppuy);
-		resized = true;
+		//this.width = width;
+		//this.height = height;
 	}
 
 	public void toggleDebug() {
@@ -226,8 +287,6 @@ public class WorldRenderer {
 
 	public Vector2 toGameCoordinates(int x, int y) {
 		//y = 0 -> 320 at bottom
-		Gdx.app.log("JING", "x: " + x/ppuy + " y:" + (CAMERA_HEIGHT - y/ppuy));
-		//return new Vector2((float)Math.floor(x / ppux), (float)Math.floor(CAMERA_HEIGHT - y/ppuy));
 		Vector3 v3 = new Vector3(x,  y, 0);
 		this.cam.unproject(v3);
 		Gdx.app.log("JING", "x: " + v3.x + " y:" + v3.y);

@@ -37,7 +37,8 @@ public class Level {
 	}
 	
 	private void generateLevel() {
-		//TODO:
+		//TODO: make it work
+		
 	}
 	
 	private void loadDemo2Level() {
