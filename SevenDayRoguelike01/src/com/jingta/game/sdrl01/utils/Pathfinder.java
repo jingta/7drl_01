@@ -28,6 +28,13 @@ public class Pathfinder {
 		public Vector2 getPosition() {
 			return this.position;
 		}
+		/**
+		 * Calculate the cost of this node. Nav cost + estimated distance
+		 * @return
+		 */
+		public int getCost() {
+			return this.navigation_cost + this.estimated_distance;
+		}
 		public Node getParent() {
 			return this.parent;
 		}
@@ -62,22 +69,30 @@ public class Pathfinder {
 		Node destinationNode = new Node(destination, null);
 		
 		Node current = null;
+		Node up = null;
+		Node down = null;
+		Node left = null;
+		Node right = null;
+		
+		if (level.getTile((int)destination.x, (int)destination.y) == null){
+			return null; // no path if tile is null
+		}
 		while (!closedNodes.contains(destinationNode) && openNodes.size() > 0  ) {
-			current = openNodes.remove(0); //TODO: get optimal node here
+			current = openNodes.remove(getOptimalNode(openNodes)); 
 			closedNodes.add(current);
 			//TODO: BLOCK NODES IF VALUES ARE > MAX OR < 0...will be solved if you remove blanks
-			Node up = new Node(
+			up = new Node(
 					new Vector2(current.position.x, current.position.y + 1), current);
-			Node down = new Node(
+			down = new Node(
 					new Vector2(current.position.x, current.position.y - 1), current);
-			Node left = new Node(
+			left = new Node(
 					new Vector2(current.position.x - 1, current.position.y), current);
-			Node right = new Node(
+			right = new Node(
 					new Vector2(current.position.x + 1, current.position.y), current);
 			Node[] neighbors = {up, down, left, right};
 			for (Node n : neighbors) {
 				Tile t = level.getTile((int)n.position.x, (int)n.position.y);
-				if (t == null || !t.getType().equals(Tile.Type.COLLIDABLE)) { // TODO: empty space is traversible for now
+				if (t != null && !t.getType().equals(Tile.Type.COLLIDABLE)) { // TODO: empty space is traversible for now
 					// tile is traversible
 					int dist = 0;
 					dist += Math.abs(destination.x - n.position.x);
@@ -107,6 +122,20 @@ public class Pathfinder {
 		} else {
 			return null; // no path
 		}
+	}
+
+	private int getOptimalNode(List<Node> nodes) {
+		int nodeIndex = -1;
+		int nodeCost = -1;
+		Node node;
+		for (int i = 0; i < nodes.size(); i++) {
+			node = nodes.get(i);
+			if (nodeIndex == -1 || node.getCost() < nodeCost) {
+				nodeIndex = i;
+				nodeCost = node.getCost();
+			}
+		}
+		return nodeIndex;
 	}
 }
 
