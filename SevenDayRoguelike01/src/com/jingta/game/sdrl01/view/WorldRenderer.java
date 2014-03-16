@@ -56,7 +56,7 @@ public class WorldRenderer {
 		this.world = world;
 		this.cam = new OrthographicCamera(CAMERA_WIDTH, CAMERA_HEIGHT);
 		this.cam.position.set(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, 0);
-		this.cam.zoom = 3;
+		this.cam.zoom = 10; // TODO: breaks pathfinding on 5
 		this.cam.update();
 		this.debug = debug;
 		this.spriteBatch = new SpriteBatch();

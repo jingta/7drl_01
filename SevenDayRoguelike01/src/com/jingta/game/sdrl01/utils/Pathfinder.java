@@ -91,7 +91,7 @@ public class Pathfinder {
 					new Vector2(current.position.x + 1, current.position.y), current);
 			Node[] neighbors = {up, down, left, right};
 			for (Node n : neighbors) {
-				Tile t = level.getTile((int)n.position.x, (int)n.position.y);
+				Tile t = level.getTile((int)n.position.x, (int)n.position.y);//TODO: problem? if position is .5?
 				if (t != null && !t.getType().equals(Tile.Type.COLLIDABLE)) { // TODO: empty space is traversible for now
 					// tile is traversible
 					int dist = 0;
